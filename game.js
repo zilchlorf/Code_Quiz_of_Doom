@@ -8,31 +8,43 @@ var questions = [
     ["What is 8 x 12?", "88", "112", "96", "C"]
 ];
 
-// this get function is short for the getElementById function	
 
-var timerEl = document.getElementById("TimeRemaining");
-var StartQuizBtn = document.getElementById("StartQuizBtn")
+
+var timerEl = get("TimeRemaining");
+var StartQuizBtn = get("StartQuizBtn")
 
 StartQuizBtn.onclick = StartQuiz;
+
+// this get function is short for the getElementById function	
 function get(x) {
     return document.getElementById(x);
 }
+get("test").style.display = "none";
+function showDiv() {
+    get("test").style.display = "block";
+}
 
 function StartQuiz() {
-    var timeLeft = 120;
+    showDiv();
+    var timeLeft = 30;
 
     var timeInterval = setInterval(function () {
-        //you need to define timerEl before it's called
         timerEl.textContent = timeLeft + " seconds remaining";
         timeLeft--;
 
-        if (timeLeft === 0) {
-            timerEl.textContent = "";
-            StoreResults();
-            clearInterval(timeInterval);
+        if (timeLeft === -1) {
+            alert("Time's Up")
+            timeLeft.textContent = "";
+            // StoreResults();
+        }
+        if (timeLeft < 0) {
+            clearInterval(timeInterval)
         }
 
     }, 1000);
+
+
+
 }
 function renderQuestion() {
     test = get("test");
@@ -75,4 +87,21 @@ function checkAnswer() {
     // then the renderQuestion function runs again to go to next question
     renderQuestion();
 }
+
+
 window.addEventListener("load", renderQuestion, false);
+
+
+// TRYING TO GET SCORE TO WORK
+// totalScore();
+// function totalScore() {
+//     let score = 0;
+//     document.getElementsByName("ScoreCount");
+//     if (choice == questions[pos][4]) {
+//         score++;
+//     }
+//     else {
+//         score--;
+//     }
+//     score.textContent = "current score:" + score ;
+// }
