@@ -2,13 +2,11 @@
 var pos = 0, test, test_status, question, choice, choices, chA, chB, chC, correct = 0;
 // this is a multidimensional array with 4 inner array elements with 5 elements inside them
 var questions = [
-    ["What is 36 + 42?", "64", "78", "76", "B"],
-    ["What is 7 x 4?", "21", "27", "28", "C"],
-    ["What is 16 / 4?", "4", "6", "3", "A"],
-    ["What is 8 x 12?", "88", "112", "96", "C"]
+    ["What is HTML?", "Hyper-tenuous mimic language", "A markup language that is a set of markup tags", "A kind of disinfectant", "B"],
+    ["What is CSS?", "Corrosive snake skin", "A language of the ancient tribes of Cascadia", "CSS is a language used to detail the presentation of a web page", "C"],
+    ["what is javascript used for?", "to create responsive, interactive elements for web pages, enhancing the user experience.", "A coffee replacement", "Forcasting predictions of coffee shortages", "A"],
+    ["what is jQuery used for?", "Asking for money from potential donators", "Cleaning out your laptop's cup holder", "It can be used to make code simple, concise and reusable", "C"]
 ];
-
-
 
 var timerEl = get("TimeRemaining");
 var StartQuizBtn = get("StartQuizBtn")
@@ -35,17 +33,15 @@ function StartQuiz() {
         if (timeLeft === -1) {
             alert("Time's Up")
             timeLeft.textContent = "";
-            // StoreResults();
+            // SaveScore();
         }
         if (timeLeft < 0) {
             clearInterval(timeInterval)
         }
 
     }, 1000);
-
-
-
 }
+
 function renderQuestion() {
     test = get("test");
     if (pos >= questions.length) {
@@ -104,4 +100,15 @@ window.addEventListener("load", renderQuestion, false);
 //         score--;
 //     }
 //     score.textContent = "current score:" + score ;
+// }
+
+//TRYING TO GET SAVED SCORE TO WORK
+// const username = get("username")
+// const saveScoreBtn = get('saveScoreBtn')
+// username.addEventListener('keyup', username) 
+// console.log(username.value);
+// SaveHighScoreBtn.onclick = SaveHighScore();
+// SaveHighScore(event); {
+//     console.log("clicked the save button");
+//     e.preventDefault();
 // }
