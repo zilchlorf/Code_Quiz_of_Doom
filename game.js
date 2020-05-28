@@ -1,6 +1,17 @@
-// pos is position of where the user in the test or which question on
-var pos = 0, test, test_status, question, choice, choices, chA, chB, chC, correct = 0;
-// this is a multidimensional array with 4 inner array elements with 5 elements inside them
+// Variable declaration (pos is position of where the user in the test or which question on)
+
+var pos = 0
+var correct = 0
+var test
+var test_status
+var question
+var choice
+var choices
+var chA
+var chB
+var chC
+
+// this is a multidimensional array with 4 inner array elements with 5 elements inside them// this method was selected after searching the web for different options to apply within a quiz
 var questions = [
     ["What is HTML?", "Hyper-tenuous mimic language", "A markup language that is a set of markup tags", "A kind of disinfectant", "B"],
     ["What is CSS?", "Corrosive snake skin", "A language of the ancient tribes of Cascadia", "CSS is a language used to detail the presentation of a web page", "C"],
@@ -11,12 +22,12 @@ var questions = [
 var timerEl = get("TimeRemaining");
 var StartQuizBtn = get("StartQuizBtn")
 
-StartQuizBtn.onclick = StartQuiz;
-
 // this get function is short for the getElementById function	
 function get(x) {
     return document.getElementById(x);
 }
+StartQuizBtn.onclick = StartQuiz;
+
 get("test").style.display = "none";
 function showDiv() {
     get("test").style.display = "block";
@@ -52,6 +63,7 @@ function renderQuestion() {
         correct = 0;
         // stops rest of renderQuestion function running when test is completed
         return false;
+
     }
     get("test_status").innerHTML = "Question " + (pos + 1) + " of " + questions.length;
     question = questions[pos][0];
@@ -65,6 +77,7 @@ function renderQuestion() {
     test.innerHTML += "<input type='radio' name='choices' value='C'> " + chC + "<br><br>";
     test.innerHTML += "<button onclick='checkAnswer()'>Submit Answer</button>";
 }
+
 function checkAnswer() {
     // use getElementsByName because we have an array which it will loop through
     choices = document.getElementsByName("choices");
@@ -83,17 +96,14 @@ function checkAnswer() {
     // then the renderQuestion function runs again to go to next question
     renderQuestion();
 }
-
-
 window.addEventListener("load", renderQuestion, false);
 
-
 // TRYING TO GET SCORE TO WORK
-// totalScore();
+
 // function totalScore() {
 //     let score = 0;
-//     document.getElementsByName("ScoreCount");
-//     if (choice == questions[pos][4]) {
+//     get("ScoreCount").innerHTML = score;
+//     if (choice == questions[pos][4])) {
 //         score++;
 //     }
 //     else {
@@ -103,6 +113,7 @@ window.addEventListener("load", renderQuestion, false);
 // }
 
 //TRYING TO GET SAVED SCORE TO WORK
+
 // const username = get("username")
 // const saveScoreBtn = get('saveScoreBtn')
 // username.addEventListener('keyup', username) 
